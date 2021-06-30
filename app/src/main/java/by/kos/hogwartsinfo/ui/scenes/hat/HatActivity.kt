@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import by.kos.hogwartsinfo.R
 import by.kos.hogwartsinfo.databinding.ActivityHatBinding
+import by.kos.hogwartsinfo.helpers.Keys
 import by.kos.hogwartsinfo.ui.scenes.main.MainActivity
 
 class HatActivity : AppCompatActivity() {
@@ -57,6 +58,11 @@ class HatActivity : AppCompatActivity() {
     private fun setupFaculty(viewModel: HatViewModel) {
         viewModel.facultyName.observe(this, Observer { facultyName ->
             if (facultyName.isNotEmpty()) {
+                val sharedPreferences = getSharedPreferences(getString(R.string.app_name),0)
+                sharedPreferences.edit()
+                    .putString(Keys.USERNAME.value, binding.editTextWelcomeUserName.text.toString())
+                    .putString(Keys.FACULTY.value, facultyName)
+                    .apply()
                 binding.txtWelcomeSelected.text =
                     getString(R.string.welcome_selected).replace("[faculty_name]", facultyName)
                 binding.txtWelcomeSelected.visibility = View.VISIBLE

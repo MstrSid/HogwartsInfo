@@ -55,8 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:boxStrokeColor="@color/gold"
-        app:hintTextColor="@color/gold"
+        app:hintTextColor="@color/black"
         android:hint="@string/enter_name">
 
         <EditText
@@ -64,10 +63,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
+            android:textColor="@color/black"
             android:fontFamily="@font/harrypotterfont"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:textSize="24sp" />
+            android:textSize="32sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

@@ -38,7 +38,7 @@
             android:shadowDy="5"
             android:shadowRadius="5"
             android:textColor="@color/gold"
-            android:textSize="28sp"
+            android:textSize="32sp"
             tools:text="txtStudentName" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:shadowDy="5"
             android:shadowRadius="5"
             android:textColor="@color/gold_light"
-            android:textSize="28sp"
+            android:textSize="32sp"
             tools:text="txtStudentFaculty" />
     </LinearLayout>
     </LinearLayout>

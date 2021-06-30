@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hogwarts Info</string>
     <string name="title_home">Students</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Stuffs</string>
     <string name="title_notifications">Notifications</string>
     <string name="welcome_title">Welcome to school of wizardry and magic Hogwarts</string>
     <string name="welcome_subtitle">Put on Sorting Hat</string>

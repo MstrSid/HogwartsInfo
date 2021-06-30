@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gold">#FFB700</color>
     <color name="gold_light">#F8D34B</color>
+    <color name="gold_primary">#B16100</color>
+    <color name="gold_primary_light">#816027</color>
 </resources>

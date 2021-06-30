@@ -1,4 +1,4 @@
-package by.kos.hogwartsinfo.ui.scenes.students
+package by.kos.hogwartsinfo.ui.scenes.stuff
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.kos.hogwartsinfo.databinding.FragmentStudentsBinding
-import by.kos.hogwartsinfo.ui.scenes.students.adapter.StudentAdapter
+import by.kos.hogwartsinfo.databinding.FragmentStuffBinding
+import by.kos.hogwartsinfo.ui.scenes.stuff.adapter.StuffAdapter
 
-class StudentsFragment : Fragment() {
+class StuffFragment : Fragment() {
 
-    private lateinit var studentsViewModel: StudentsViewModel
-    private var _binding: FragmentStudentsBinding? = null
-    private val mAdapter = StudentAdapter()
+    private lateinit var stuffViewModel: StuffViewModel
+    private var _binding: FragmentStuffBinding? = null
+    private val mAdapter = StuffAdapter()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,26 +28,26 @@ class StudentsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        studentsViewModel =
-            ViewModelProvider(this).get(StudentsViewModel::class.java)
+        stuffViewModel =
+            ViewModelProvider(this).get(StuffViewModel::class.java)
 
-        _binding = FragmentStudentsBinding.inflate(inflater, container, false)
+        _binding = FragmentStuffBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
         setupData()
         setupLoading()
 
         context?.let {
-            binding.recyclerStudents.adapter = mAdapter
-            binding.recyclerStudents.layoutManager =
+            binding.recyclerStuff.adapter = mAdapter
+            binding.recyclerStuff.layoutManager =
                 LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
         }
-        binding.editStudentsSearch.addTextChangedListener(object : TextWatcher {
+
+        binding.editStuffSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -59,35 +59,32 @@ class StudentsFragment : Fragment() {
             }
 
         })
-
-        studentsViewModel.fetchStudents()
-
+        stuffViewModel.fetchStuffs()
     }
-
-    private fun setupLoading() {
-        studentsViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+    private fun setupLoading(){
+        stuffViewModel.isLoading.observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = if (it) {
                 View.VISIBLE
             } else View.GONE
 
-            binding.recyclerStudents.visibility = if (it) {
-                View.GONE
-            } else View.VISIBLE
+            binding.recyclerStuff.visibility = if (it) {
+            View.GONE
+        } else View.VISIBLE
 
-            binding.tiStudentsSearch.visibility = if (it) {
+            binding.tiStuffSearch.visibility = if (it) {
                 View.GONE
             } else View.VISIBLE
         })
     }
 
-    private fun setupData() {
-        studentsViewModel.students.observe(viewLifecycleOwner, Observer {
+    private fun setupData(){
+        stuffViewModel.stuffs.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 mAdapter.setData(newData = it)
             }
         })
-    }
 
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

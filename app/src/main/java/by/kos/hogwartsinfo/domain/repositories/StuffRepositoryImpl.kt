@@ -1,29 +1,28 @@
 package by.kos.hogwartsinfo.domain.repositories
 
-import android.net.Uri
 import by.kos.hogwartsinfo.R
-import by.kos.hogwartsinfo.domain.models.StudentModel
+import by.kos.hogwartsinfo.domain.models.StuffModel
 import kotlinx.coroutines.delay
 
-class StudentRepositoryImpl: StudentRepository {
-    override suspend fun fetchStudents(): List<StudentModel> {
+class StuffRepositoryImpl: StuffRepository {
+    override suspend fun fetchStuffs(): List<StuffModel> {
         delay(500)
         return listOf(
-            StudentModel(
+            StuffModel(
                 id = 0,
-                name = "Drako Malfoy",
-                facultyName = "Slytherin",
-                image = "android.resource://by.kos.hogwartsinfo/"+ R.drawable.person
-            ),
-            StudentModel(
-                id = 1,
-                name = "Hermione Granjer",
+                name = "Albus Domblledore",
                 facultyName = "Griffindor",
                 image = "android.resource://by.kos.hogwartsinfo/"+ R.drawable.person
             ),
-            StudentModel(
+            StuffModel(
+                id = 1,
+                name = "Silverus Snape",
+                facultyName = "Slytherin",
+                image = "android.resource://by.kos.hogwartsinfo/"+ R.drawable.person
+            ),
+            StuffModel(
                 id = 2,
-                name = "Sedric Diggery",
+                name = "Filius Flitwick",
                 facultyName = "Ravenclaw",
                 image = "android.resource://by.kos.hogwartsinfo/"+ R.drawable.person
             )
