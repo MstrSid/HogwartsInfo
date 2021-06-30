@@ -50,9 +50,12 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutWelcomeUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        app:boxStrokeColor="@color/gold"
+        app:hintTextColor="@color/gold"
         android:hint="@string/enter_name">
 
         <EditText

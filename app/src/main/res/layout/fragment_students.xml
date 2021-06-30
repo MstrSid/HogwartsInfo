@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/hogwarts_bg1"
+    android:backgroundTint="#9C000000"
+    android:backgroundTintMode="src_over"
+    tools:context=".ui.scenes.students.StudentsFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/gold"
+        app:hintTextColor="@color/gold"
+        app:hintAnimationEnabled="true"
+        android:hint="@string/enter_student">
+    <EditText
+        android:background="@color/white"
+        android:id="@+id/editStudentsSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gold"
+        android:fontFamily="@font/harrypotterfont"
+        android:textSize="24sp"
+        android:inputType="textPersonName"
+        android:maxLines="1"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerStudents"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6AC6C6C6"/>
+
+</LinearLayout>

@@ -30,7 +30,6 @@ class HatViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.postValue(true)
             withContext(Dispatchers.IO) {
-                delay(2000)
                 _facultyName.postValue(
                     hatRepository.generateFaculty(
                         userName = _userName.value?:""

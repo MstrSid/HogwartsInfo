@@ -1,14 +1,17 @@
 package by.kos.hogwartsinfo.ui.scenes.hat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import by.kos.hogwartsinfo.R
 import by.kos.hogwartsinfo.databinding.ActivityHatBinding
+import by.kos.hogwartsinfo.ui.scenes.main.MainActivity
 
 class HatActivity : AppCompatActivity() {
 
@@ -32,21 +35,23 @@ class HatActivity : AppCompatActivity() {
             }
 
         })
-
-        binding.btnWelcomeSelect.setOnClickListener {
-            hatViewModel.getFacultyName()
-        }
-
-        setupFaculty(viewModel = hatViewModel)
         setupLoading(viewModel = hatViewModel)
+        setupFaculty(viewModel = hatViewModel)
+        binding.btnWelcomeSelect.setOnClickListener {
+            if(binding.btnWelcomeSelect.text == getString(R.string.to_hogwarts)){
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }  else hatViewModel.getFacultyName()
+        }
     }
 
     private fun setupLoading(viewModel: HatViewModel) {
         viewModel.isLoading.observe(this, Observer { isLoading ->
-            binding.editTextWelcomeUserName.isEnabled = !isLoading
+            if(isLoading) binding.editTextWelcomeUserName.isEnabled = false
             binding.btnWelcomeSelect.isEnabled = !isLoading
+            if(isLoading) binding.btnWelcomeSelect.text = getString(R.string.thinking)
         })
-
     }
 
     private fun setupFaculty(viewModel: HatViewModel) {
@@ -55,8 +60,8 @@ class HatActivity : AppCompatActivity() {
                 binding.txtWelcomeSelected.text =
                     getString(R.string.welcome_selected).replace("[faculty_name]", facultyName)
                 binding.txtWelcomeSelected.visibility = View.VISIBLE
+                binding.btnWelcomeSelect.text = getString(R.string.to_hogwarts)
             }
         })
-
     }
 }
