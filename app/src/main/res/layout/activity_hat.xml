@@ -9,6 +9,7 @@
     android:backgroundTintMode="src_over"
     android:orientation="vertical"
     android:padding="8dp"
+    android:focusableInTouchMode="true"
     tools:context=".ui.scenes.hat.HatActivity">
 
         <TextView

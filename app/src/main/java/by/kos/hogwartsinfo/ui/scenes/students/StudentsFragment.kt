@@ -32,27 +32,20 @@ class StudentsFragment : Fragment() {
             ViewModelProvider(this).get(StudentsViewModel::class.java)
 
         _binding = FragmentStudentsBinding.inflate(inflater, container, false)
-
-        return binding.root
+        val root: View = binding.root
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupData()
-
             context?.let {
                 binding.recyclerStudents.adapter = mAdapter
                 binding.recyclerStudents.layoutManager =
                     LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
         }
         binding.editStudentsSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -63,12 +56,13 @@ class StudentsFragment : Fragment() {
             }
 
         })
+
         studentsViewModel.fetchStudents()
 
     }
 
     private fun setupData() {
-        studentsViewModel.students.observe(this, Observer {
+        studentsViewModel.students.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 mAdapter.setData(newData = it)
             }

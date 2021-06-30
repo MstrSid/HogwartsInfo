@@ -8,6 +8,7 @@
     android:background="@drawable/hogwarts_bg1"
     android:backgroundTint="#9C000000"
     android:backgroundTintMode="src_over"
+    android:focusableInTouchMode="true"
     tools:context=".ui.scenes.students.StudentsFragment">
 
     <com.google.android.material.textfield.TextInputLayout
