@@ -4,92 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hogwarts_bg1"
+    android:backgroundTint="#9C000000"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical"
     android:padding="8dp"
     tools:context=".ui.scenes.hat.HatActivity">
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_title"
-        android:fontFamily="@font/harrypotterfont"
-        android:textSize="46sp"
-        android:textColor="@color/black"
-        android:textAlignment="center"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/harrypotterfont"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:text="@string/welcome_subtitle" />
-    </androidx.cardview.widget.CardView>
 
-<androidx.cardview.widget.CardView
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    android:elevation="4dp">
-    <ImageView
-        android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/harrypotterfont"
+            android:shadowColor="@color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="@string/welcome_title"
+            android:textAlignment="center"
+            android:textColor="@color/gold"
+            android:textSize="46sp" />
+
+        <TextView
+            android:layout_marginTop="16dp"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gold_light"
+            android:shadowColor="@color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:fontFamily="@font/harrypotterfont"
+            android:text="@string/welcome_subtitle"
+            android:textAlignment="center"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:layout_marginTop="16dp"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/img_hat" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/img_hat" />
-</androidx.cardview.widget.CardView>
+        android:layout_marginTop="32dp"
+        android:hint="@string/enter_name">
 
-<com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/enter_name"
-    android:layout_marginTop="16dp">
-    <EditText
-        android:id="@+id/editTextWelcomeUserName"
-        android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent"
-        android:textSize="24sp"
-        android:fontFamily="@font/harrypotterfont"
-        android:inputType="textPersonName" />
-</com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/editTextWelcomeUserName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fontFamily="@font/harrypotterfont"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textSize="24sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnWelcomeSelect"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sort"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#31A85D"
-        app:cornerRadius="16dp"
-        android:textSize="32sp"
+        android:fontFamily="@font/harrypotterfont"
+        android:text="@string/sort"
         android:textAllCaps="true"
-        android:fontFamily="@font/harrypotterfont"/>
+        android:textSize="32sp"
+        app:cornerRadius="16dp" />
 
     <TextView
         android:id="@+id/txtWelcomeSelected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/harrypotterfont"
+        android:text="@string/welcome_selected"
         android:textAlignment="center"
         android:textSize="36sp"
+        android:textColor="@color/gold"
+        android:shadowColor="@color/black"
+        android:shadowDx="5"
+        android:layout_marginTop="16dp"
+        android:shadowDy="5"
+        android:shadowRadius="5"
         android:visibility="gone"
-        tools:visibility="visible"
-        android:text="@string/welcome_selected" />
+        tools:visibility="visible" />
 
 </LinearLayout>
