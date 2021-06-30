@@ -25,9 +25,7 @@ class HatViewModel : ViewModel() {
             _isLoading.postValue(true)
             withContext(Dispatchers.IO) {
                 delay(2000)
-                if (name == "Harry" && surname == "Potter") {
-                    _facultyName.postValue("Griffindor")
-                } else _facultyName.postValue("Slytherin")
+                _facultyName.postValue(hatRepository.generateFaculty(name = name, surname = surname).name)
                 _isLoading.postValue(false)
             }
         }

@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="welcome_title">Welcome to school of wizardry and magic Hogwarts</string>
+    <string name="welcome_subtitle">Put on Sorting Hat</string>
+    <string name="enter_name">Enter your name here...</string>
+    <string name="sort">SORT</string>
+    <string name="welcome_selected">Your faculty: [faculty_name]</string>
 </resources>
