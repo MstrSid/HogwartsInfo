@@ -53,6 +53,18 @@
             android:textColor="@color/gold_light"
             android:textSize="32sp"
             tools:text="txtStudentFaculty" />
+        <TextView
+            android:id="@+id/txtStudentAncestry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/harrypotterfont"
+            android:shadowColor="@color/black"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:textColor="@color/gold"
+            android:textSize="32sp"
+            tools:text="txtStudentAncestry" />
     </LinearLayout>
     </LinearLayout>
     <View

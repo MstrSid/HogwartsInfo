@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import by.kos.hogwartsinfo.domain.repositories.StudentRepository
 import by.kos.hogwartsinfo.domain.repositories.StudentRepositoryImpl
 import by.kos.hogwartsinfo.ui.scenes.students.data.StudentCellModel
+import by.kos.hogwartsinfo.ui.scenes.students.data.mapToUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,8 +18,8 @@ class StudentsViewModel : ViewModel() {
 
     private val _students =
         MutableLiveData<List<StudentCellModel>>().apply {
-        value = ArrayList()
-    }
+            value = ArrayList()
+        }
     private var _isLoading =
         MutableLiveData<Boolean>().apply { value = false }
 
@@ -28,16 +29,11 @@ class StudentsViewModel : ViewModel() {
     fun fetchStudents() {
         viewModelScope.launch {
             _isLoading.postValue(true)
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 val students = studentRepository.fetchStudents()
                 _isLoading.postValue(false)
                 _students.postValue(students.map {
-                    StudentCellModel(
-                        id = it.id,
-                        name = it.name,
-                        facultyName =  it.facultyName,
-                        image = it.image
-                    )
+                    it.mapToUI()
                 })
             }
         }

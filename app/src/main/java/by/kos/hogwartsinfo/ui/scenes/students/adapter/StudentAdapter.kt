@@ -33,11 +33,13 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
 
         private val txtName = binding.txtStudentName
         private val txtFaculty =  binding.txtStudentFaculty
+        private val txtAncenstry = binding.txtStudentAncestry
         private val image = binding.imgStudentPhoto
 
         fun bind(cellModel: StudentCellModel) {
             txtName.text = cellModel.name
-            txtFaculty.text = cellModel.facultyName
+            txtFaculty.text = cellModel.house
+            txtAncenstry.text = cellModel.ancestry
             image.setImageURI(Uri.parse(cellModel.image))
         }
     }
@@ -59,7 +61,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
 
         mDisplayList.addAll(mDataList.filter {
             it.name.contains(query, true) ||
-                    it.facultyName.contains(query, true)
+                    it.house.contains(query, true)
         })
         notifyDataSetChanged()
     }
