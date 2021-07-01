@@ -12,7 +12,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="fontFamily">@font/harrypotterfont</item>
-        <item name="android:textSize">20sp</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
