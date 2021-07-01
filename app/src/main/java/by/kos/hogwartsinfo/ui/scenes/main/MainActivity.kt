@@ -1,6 +1,9 @@
 package by.kos.hogwartsinfo.ui.scenes.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import by.kos.hogwartsinfo.R
 import by.kos.hogwartsinfo.databinding.ActivityMainBinding
+import by.kos.hogwartsinfo.helpers.Keys
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,5 +39,23 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_action, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_leave -> {
+            val sharedPreferences = getSharedPreferences(getString(R.string.app_name), 0)
+            sharedPreferences.edit().remove(Keys.FACULTY.value).remove(Keys.USERNAME.value).apply()
+            Toast.makeText(applicationContext, "You lived from faculty", Toast.LENGTH_SHORT).show()
+            true
+
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+
+        }
     }
 }

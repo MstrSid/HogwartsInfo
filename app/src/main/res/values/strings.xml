@@ -2,7 +2,7 @@
     <string name="app_name">Hogwarts Info</string>
     <string name="title_home">Students</string>
     <string name="title_dashboard">Stuffs</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Spells</string>
     <string name="welcome_title">Welcome to school of wizardry and magic Hogwarts</string>
     <string name="welcome_subtitle">Put on Sorting Hat</string>
     <string name="enter_name">Enter your name here...</string>
@@ -11,4 +11,9 @@
     <string name="thinking">Thinking...</string>
     <string name="to_hogwarts">To Hogwarts</string>
     <string name="enter_student">Enter name or faculty</string>
+    <string name="charm">Charm</string>
+    <string name="spell">Spell</string>
+    <string name="jinx">Jinx</string>
+    <string name="curse">Curse</string>
+    <string name="leave_faculty">Leave from faculty</string>
 </resources>

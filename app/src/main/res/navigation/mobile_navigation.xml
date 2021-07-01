@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="by.kos.hogwartsinfo.ui.scenes.notifications.NotificationsFragment"
+        android:name="by.kos.hogwartsinfo.ui.scenes.spells.SpellsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_spells" />
 </navigation>
