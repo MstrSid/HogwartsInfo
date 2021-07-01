@@ -1,6 +1,6 @@
 package by.kos.hogwartsinfo.data.network
 
-import by.kos.hogwartsinfo.data.services.CharactersService
+import by.kos.hogwartsinfo.data.services.CharactersStudentsService
 import by.kos.hogwartsinfo.data.services.SpellsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -25,8 +25,8 @@ class RetrofitFactory {
         .addInterceptor(okHttpInterceptor())
         .build()
 
-    private val retrofitClientCharacters: Retrofit = Retrofit.Builder()
-        .baseUrl("http://hp-api.herokuapp.com/api/characters")
+    private val retrofitClientCharactersStudents: Retrofit = Retrofit.Builder()
+        .baseUrl("https://hp-api.herokuapp.com/api/characters/")
         .client(okHttpClient)
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
@@ -37,6 +37,6 @@ class RetrofitFactory {
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
-    val charactersService:CharactersService = retrofitClientCharacters.create(CharactersService::class.java)
+    val charactersStudentsService:CharactersStudentsService = retrofitClientCharactersStudents.create(CharactersStudentsService::class.java)
     val spellsService: SpellsService = retrofitClientSpells.create(SpellsService::class.java)
 }
