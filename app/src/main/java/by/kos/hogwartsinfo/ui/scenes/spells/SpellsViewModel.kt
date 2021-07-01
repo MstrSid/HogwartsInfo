@@ -37,7 +37,7 @@ class SpellsViewModel : ViewModel() {
         fetchSpells()
     }
 
-    fun fetchSpells() {
+    private fun fetchSpells() {
         viewModelScope.launch {
             _isLoading.postValue(true)
             withContext(Dispatchers.Default){

@@ -65,7 +65,6 @@ class SpellsFragment : Fragment() {
             binding.btnSpellsCurse.isSelected = !binding.btnSpellsCurse.isSelected
             spellsViewModel.pressFilter(type = "Curse", isSelected = binding.btnSpellsCurse.isSelected)
         }
-//        spellsViewModel.fetchSpells()
     }
 
 
