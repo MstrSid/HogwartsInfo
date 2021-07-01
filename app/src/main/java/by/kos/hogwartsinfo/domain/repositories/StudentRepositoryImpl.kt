@@ -5,9 +5,13 @@ import by.kos.hogwartsinfo.domain.models.StudentModel
 import by.kos.hogwartsinfo.domain.models.mapToModel
 
 class StudentRepositoryImpl: StudentRepository {
-    override suspend fun fetchStudents(): List<StudentModel> {
-       return RetrofitFactory.instance.charactersStudentsService.getAllCharacters().map {
-           it.mapToModel()
+    override suspend fun fetchStudents(): List<StudentModel>? {
+       return try {
+           RetrofitFactory.instance.charactersStudentsService.getAllCharacters().map {
+               it.mapToModel()
+           }
+       } catch (e: Exception){
+           null
        }
     }
 }

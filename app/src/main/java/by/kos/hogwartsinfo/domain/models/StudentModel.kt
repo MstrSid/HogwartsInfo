@@ -1,11 +1,11 @@
 package by.kos.hogwartsinfo.domain.models
 
-import by.kos.hogwartsinfo.data.models.CharacterRemote
+import by.kos.hogwartsinfo.data.models.CharacterStudentRemote
 
 data class StudentModel(val name: String, val house: String, val ancestry: String, val image: String)
 
 
-fun CharacterRemote.mapToModel(): StudentModel{
+fun CharacterStudentRemote.mapToModel(): StudentModel{
     return StudentModel(
         name = this.name,
         house = this.house,

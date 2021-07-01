@@ -1,11 +1,11 @@
 package by.kos.hogwartsinfo.ui.scenes.students.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import by.kos.hogwartsinfo.databinding.CellStudentBinding
 import by.kos.hogwartsinfo.ui.scenes.students.data.StudentCellModel
+import com.squareup.picasso.Picasso
 
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
 
@@ -33,14 +33,14 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() 
 
         private val txtName = binding.txtStudentName
         private val txtFaculty =  binding.txtStudentFaculty
-        private val txtAncenstry = binding.txtStudentAncestry
+        private val txtAncestry = binding.txtStudentAncestry
         private val image = binding.imgStudentPhoto
 
         fun bind(cellModel: StudentCellModel) {
             txtName.text = cellModel.name
             txtFaculty.text = cellModel.house
-            txtAncenstry.text = cellModel.ancestry
-            image.setImageURI(Uri.parse(cellModel.image))
+            txtAncestry.text = cellModel.ancestry
+            Picasso.get().load(cellModel.image).into(image)
         }
     }
 

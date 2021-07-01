@@ -15,12 +15,11 @@
 
         <ImageView
             android:id="@+id/imgStuffPhoto"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:src="@drawable/person"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:layout_marginEnd="8dp"/>
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -53,6 +52,19 @@
                 android:textColor="@color/gold_light"
                 android:textSize="32sp"
                 tools:text="txtStuffFaculty" />
+
+            <TextView
+                android:id="@+id/txtStuffAncestry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harrypotterfont"
+                android:shadowColor="@color/black"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="5"
+                android:textColor="@color/gold"
+                android:textSize="32sp"
+                tools:text="txtStuffAncestry" />
         </LinearLayout>
     </LinearLayout>
     <View

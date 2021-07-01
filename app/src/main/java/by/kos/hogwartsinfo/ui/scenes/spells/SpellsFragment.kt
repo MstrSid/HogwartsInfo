@@ -1,15 +1,19 @@
 package by.kos.hogwartsinfo.ui.scenes.spells
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kos.hogwartsinfo.databinding.FragmentSpellsBinding
 import by.kos.hogwartsinfo.ui.scenes.spells.adapter.SpellAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class SpellsFragment : Fragment() {
 
@@ -30,14 +34,20 @@ class SpellsFragment : Fragment() {
             ViewModelProvider(this).get(SpellsViewModel::class.java)
 
         _binding = FragmentSpellsBinding.inflate(inflater, container, false)
-        return binding.root
+        val root: View = binding.root
+        return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configureRecycler()
-        configureDataDisplay()
+        setupData()
+        setupLoading()
+        context?.let {
+            binding.recyclerSpells.adapter = mAdapter
+            binding.recyclerSpells.layoutManager =
+                LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
+        }
 
         binding.btnSpellsCharm.setOnClickListener {
             binding.btnSpellsCharm.isSelected = !binding.btnSpellsCharm.isSelected
@@ -55,20 +65,44 @@ class SpellsFragment : Fragment() {
             binding.btnSpellsCurse.isSelected = !binding.btnSpellsCurse.isSelected
             spellsViewModel.pressFilter(type = "Curse", isSelected = binding.btnSpellsCurse.isSelected)
         }
+//        spellsViewModel.fetchSpells()
     }
 
-    private fun configureDataDisplay() {
-        spellsViewModel.spellsDisplay.observe(viewLifecycleOwner, Observer { data ->
-            mAdapter.setData(newData = data)
+
+    private fun setupData() {
+        spellsViewModel.spellsDisplay.observe(viewLifecycleOwner, Observer {
+            if(it.isNotEmpty()) {
+                mAdapter.setData(newData = it)
+            }
         })
     }
 
-    private fun configureRecycler() {
-        context?.let {
-            binding.recyclerSpells.adapter = mAdapter
-            binding.recyclerSpells.layoutManager =
-                LinearLayoutManager(it, LinearLayoutManager.VERTICAL, false)
-        }
+    private fun setupLoading() {
+        spellsViewModel.isLoading.observe(viewLifecycleOwner, Observer {
+            binding.progressBar.visibility = if (it) {
+                View.VISIBLE
+            } else View.GONE
+
+            binding.btnSpellsCharm.visibility = if (it) {
+                View.GONE
+            } else View.VISIBLE
+
+            binding.btnSpellsSpell.visibility = if (it) {
+                View.GONE
+            } else View.VISIBLE
+
+            binding.btnSpellsJinx.visibility = if (it) {
+                View.GONE
+            } else View.VISIBLE
+
+            binding.btnSpellsCurse.visibility = if (it) {
+                View.GONE
+            } else View.VISIBLE
+
+            binding.recyclerSpells.visibility = if (it) {
+                View.GONE
+            } else View.VISIBLE
+        })
     }
 
     override fun onDestroyView() {

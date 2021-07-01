@@ -8,6 +8,7 @@ import by.kos.hogwartsinfo.domain.models.StuffModel
 import by.kos.hogwartsinfo.domain.repositories.StuffRepository
 import by.kos.hogwartsinfo.domain.repositories.StuffRepositoryImpl
 import by.kos.hogwartsinfo.ui.scenes.stuff.data.StuffCellModel
+import by.kos.hogwartsinfo.ui.scenes.stuff.data.mapToUI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,14 +32,12 @@ class StuffViewModel : ViewModel() {
             withContext(Dispatchers.IO){
                 val stuffs =  stuffRepository.fetchStuffs()
                 _isLoading.postValue(false)
-                _stuffs.postValue(stuffs.map {
-                    StuffCellModel(
-                        id = it.id,
-                        name = it.name,
-                        facultyName = it.facultyName,
-                        image = it.image
-                    )
-                })
+                stuffs?.let{ values ->
+                    _stuffs.postValue(values.map {
+                        it.mapToUI()
+                    })
+                }
+
             }
         }
     }

@@ -1,7 +1,9 @@
 package by.kos.hogwartsinfo.ui.scenes.spells.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import by.kos.hogwartsinfo.databinding.CellSpellBinding
 import by.kos.hogwartsinfo.ui.scenes.spells.data.SpellCellModel

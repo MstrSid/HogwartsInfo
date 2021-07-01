@@ -32,9 +32,11 @@ class StudentsViewModel : ViewModel() {
             withContext(Dispatchers.IO) {
                 val students = studentRepository.fetchStudents()
                 _isLoading.postValue(false)
-                _students.postValue(students.map {
-                    it.mapToUI()
-                })
+                students?.let { values ->
+                    _students.postValue(values.map {
+                        it.mapToUI()
+                    })
+                }
             }
         }
     }

@@ -3,21 +3,21 @@ package by.kos.hogwartsinfo.ui.scenes.spells
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import by.kos.hogwartsinfo.domain.repositories.SpellRepositoryImpl
 import by.kos.hogwartsinfo.ui.scenes.spells.data.SpellCellModel
+import by.kos.hogwartsinfo.ui.scenes.spells.data.mapToUI
+import by.kos.hogwartsinfo.ui.scenes.stuff.data.mapToUI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SpellsViewModel : ViewModel() {
 
+    private val spellRepository = SpellRepositoryImpl()
+
     private val _spells = MutableLiveData<MutableList<SpellCellModel>>().apply {
-        value = mutableListOf<SpellCellModel>(
-            SpellCellModel(name = "Diffindo", type = "Charm"),
-            SpellCellModel(name = "Vingardio Leviosa", type = "Spell"),
-            SpellCellModel(name = "Avada Kedavra", type = "Curse"),
-            SpellCellModel(name = "Oblivios", type = "Jinx"),
-            SpellCellModel(name = "Leoso", type = "Charm"),
-            SpellCellModel(name = "Vingardio Maina", type = "Spell"),
-            SpellCellModel(name = "Avada Feeria", type = "Curse"),
-            SpellCellModel(name = "Obliviatte", type = "Jinx")
-        )
+        value = mutableListOf()
     }
 
     private val _filters = MutableLiveData<MutableList<String>>().apply {
@@ -27,10 +27,26 @@ class SpellsViewModel : ViewModel() {
         value = ArrayList()
     }
 
-    val spellsDisplay: LiveData<MutableList<SpellCellModel>> = _spellsDisplay
+    private var _isLoading =
+        MutableLiveData<Boolean>().apply { value = false }
 
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    val spellsDisplay: LiveData<MutableList<SpellCellModel>> = _spellsDisplay
     init {
-        _spellsDisplay.postValue(_spells.value)
+        fetchSpells()
+    }
+
+    fun fetchSpells() {
+        viewModelScope.launch {
+            _isLoading.postValue(true)
+            withContext(Dispatchers.Default){
+                val spells =  spellRepository.getAllSpells()
+                _isLoading.postValue(false)
+                    _spells.postValue(spells.map { it.mapToUI() }.toMutableList())
+                }
+                _spellsDisplay.postValue(_spells.value?:ArrayList())
+        }
     }
 
     fun pressFilter(type: String, isSelected: Boolean) {

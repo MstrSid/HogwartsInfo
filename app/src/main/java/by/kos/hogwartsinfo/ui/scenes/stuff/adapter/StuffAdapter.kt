@@ -8,6 +8,7 @@ import by.kos.hogwartsinfo.databinding.CellStuffBinding
 import by.kos.hogwartsinfo.databinding.FragmentStuffBinding
 import by.kos.hogwartsinfo.ui.scenes.students.data.StudentCellModel
 import by.kos.hogwartsinfo.ui.scenes.stuff.data.StuffCellModel
+import com.squareup.picasso.Picasso
 
 class StuffAdapter : RecyclerView.Adapter<StuffAdapter.StuffViewHolder>() {
 
@@ -35,12 +36,14 @@ class StuffAdapter : RecyclerView.Adapter<StuffAdapter.StuffViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         private val txtName = binding.txtStuffName
         private val txtFaculty = binding.txtStuffFaculty
+        private val txtAncestry = binding.txtStuffAncestry
         private val image = binding.imgStuffPhoto
 
         fun bind(cellModel: StuffCellModel) {
             txtName.text = cellModel.name
-            txtFaculty.text = cellModel.facultyName
-            image.setImageURI(Uri.parse(cellModel.image))
+            txtFaculty.text = cellModel.house
+            txtAncestry.text = cellModel.ancestry
+            Picasso.get().load(cellModel.image).into(image)
         }
     }
 
@@ -61,7 +64,7 @@ class StuffAdapter : RecyclerView.Adapter<StuffAdapter.StuffViewHolder>() {
 
         mDisplayList.addAll(mDataList.filter {
             it.name.contains(query, true) ||
-                    it.facultyName.contains(query, true)
+                    it.house.contains(query, true)
         })
         notifyDataSetChanged()
     }
