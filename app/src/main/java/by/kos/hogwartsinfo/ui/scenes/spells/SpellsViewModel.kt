@@ -8,6 +8,7 @@ import by.kos.hogwartsinfo.domain.repositories.SpellRepositoryImpl
 import by.kos.hogwartsinfo.ui.scenes.spells.data.SpellCellModel
 import by.kos.hogwartsinfo.ui.scenes.spells.data.mapToUI
 import by.kos.hogwartsinfo.ui.scenes.stuff.data.mapToUI
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -43,7 +44,9 @@ class SpellsViewModel : ViewModel() {
             withContext(Dispatchers.Default){
                 val spells =  spellRepository.getAllSpells()
                 _isLoading.postValue(false)
+                if (spells != null) {
                     _spells.postValue(spells.map { it.mapToUI() }.toMutableList())
+                }
                 }
                 _spellsDisplay.postValue(_spells.value?:ArrayList())
         }

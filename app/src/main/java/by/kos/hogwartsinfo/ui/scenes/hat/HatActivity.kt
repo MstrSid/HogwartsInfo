@@ -13,6 +13,7 @@ import by.kos.hogwartsinfo.R
 import by.kos.hogwartsinfo.databinding.ActivityHatBinding
 import by.kos.hogwartsinfo.helpers.Keys
 import by.kos.hogwartsinfo.ui.scenes.main.MainActivity
+import com.google.android.material.snackbar.Snackbar
 
 class HatActivity : AppCompatActivity() {
 
@@ -39,6 +40,10 @@ class HatActivity : AppCompatActivity() {
         setupLoading(viewModel = hatViewModel)
         setupFaculty(viewModel = hatViewModel)
         binding.btnWelcomeSelect.setOnClickListener {
+            if(binding.editTextWelcomeUserName.text.isEmpty()){
+                Snackbar.make(binding.root, "Name is empty, no way, Tom Riddle!", Snackbar.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             if(binding.btnWelcomeSelect.text == getString(R.string.to_hogwarts)){
                 val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)

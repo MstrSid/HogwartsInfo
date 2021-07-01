@@ -2,6 +2,7 @@ package by.kos.hogwartsinfo.data.network
 
 import by.kos.hogwartsinfo.data.services.CharactersStaffsService
 import by.kos.hogwartsinfo.data.services.CharactersStudentsService
+import by.kos.hogwartsinfo.data.services.HatService
 import by.kos.hogwartsinfo.data.services.SpellsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
@@ -9,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class RetrofitFactory {
 
@@ -44,9 +46,18 @@ class RetrofitFactory {
         .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
         .build()
 
+    private val retrofitClientHouse: Retrofit = Retrofit.Builder()
+        .baseUrl("https://www.potterapi.com/v1/")
+        .client(okHttpClient)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
+
     val charactersStudentsService: CharactersStudentsService =
         retrofitClientCharactersStudents.create(CharactersStudentsService::class.java)
     val charactersStaffsService: CharactersStaffsService =
         retrofitClientCharactersStaffs.create(CharactersStaffsService::class.java)
     val spellsService: SpellsService = retrofitClientSpells.create(SpellsService::class.java)
+    val retrofitHatService: HatService =
+        retrofitClientHouse.create(HatService::class.java)
 }
